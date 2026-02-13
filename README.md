@@ -4,11 +4,11 @@
 
 TalentFlow is a responsive Applicant Tracking System (ATS) featuring a Kanban-style workflow, real-time dashboard analytics, and persistent state management. Built entirely with Vanilla JavaScript to demonstrate core DOM manipulation and state logic without external frameworks.
 
-![TalentFlow App Screenshot](./screenshot.png)
+![TalentFlow App Screenshot](./Screenshot.png)
 
 
 ## 🔗 Live Demo
-**[View Live Demo Here](#)**
+**[View Live Demo Here](https://dhy4n-117.github.io/TalentFlow/)**
 
 ## ✨ Key Features
 
