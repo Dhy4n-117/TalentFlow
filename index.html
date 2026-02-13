@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TalentFlow | Hiring Platform</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <aside class="sidebar" id="sidebar">
+            
+            <button class="toggle-btn" id="sidebar-toggle">
+                <i class="ph-bold ph-caret-left"></i>
+            </button>
+
+            <div class="brand">
+                <i class="ph-fill ph-hexagon" style="color: var(--primary);"></i>
+                <span>TalentFlow</span>
+            </div>
+            
+            <nav class="nav-links">
+                <button class="nav-btn active" data-target="dashboard">
+                    <i class="ph ph-squares-four"></i>
+                    <span>Dashboard</span>
+                </button>
+                
+                <button class="nav-btn" data-target="board">
+                    <i class="ph ph-kanban"></i>
+                    <span>Kanban Board</span>
+                </button>
+                
+                <button class="nav-btn" data-target="settings">
+                    <i class="ph ph-gear"></i>
+                    <span>Settings</span>
+                </button>
+            </nav>
+
+            <div class="user-profile">
+                <img src="https://i.pravatar.cc/150?img=33" alt="User Avatar">
+                <div class="user-info">
+                    <p class="name">John</p>
+                    <p class="role">Recruiter</p>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            
+            <section id="dashboard" class="view active-view">
+                <header class="view-header">
+                    <div>
+                        <h1>Welcome back, Alex! 👋</h1>
+                        <p class="subtitle">Here's your hiring pipeline at a glance.</p>
+                    </div>
+                </header>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="icon-box purple"><i class="ph ph-users"></i></div>
+                        <div>
+                            <h3>Total Candidates</h3>
+                            <p class="stat-num" id="total-count">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="icon-box green"><i class="ph ph-check-circle"></i></div>
+                        <div>
+                            <h3>Hired</h3>
+                            <p class="stat-num" id="hired-count">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="icon-box orange"><i class="ph ph-clock"></i></div>
+                        <div>
+                            <h3>Pending</h3>
+                            <p class="stat-num" id="pending-count">0</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="board" class="view">
+                <header class="view-header">
+                    <div>
+                        <h1>Manage Pipeline</h1>
+                        <p class="subtitle">Drag and drop candidates to update status.</p>
+                    </div>
+                    <button class="btn-primary" id="open-modal-btn">
+                        <i class="ph ph-plus"></i> <span>Add Candidate</span>
+                    </button>
+                </header>
+
+                <div class="kanban-grid">
+                    <div class="kanban-column">
+                        <div class="column-header">
+                            <div class="header-title">
+                                <span class="dot blue"></span>
+                                <h2>Applied</h2>
+                            </div>
+                            <span class="count-badge" id="applied-count">0</span>
+                        </div>
+                        <div class="card-list" id="col-applied"></div>
+                    </div>
+
+                    <div class="kanban-column">
+                        <div class="column-header">
+                            <div class="header-title">
+                                <span class="dot orange"></span>
+                                <h2>Interview</h2>
+                            </div>
+                            <span class="count-badge" id="interview-count">0</span>
+                        </div>
+                        <div class="card-list" id="col-interview"></div>
+                    </div>
+
+                    <div class="kanban-column">
+                        <div class="column-header">
+                            <div class="header-title">
+                                <span class="dot green"></span>
+                                <h2>Hired</h2>
+                            </div>
+                            <span class="count-badge" id="hired-count-badge">0</span>
+                        </div>
+                        <div class="card-list" id="col-hired"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="settings" class="view">
+                <header class="view-header">
+                    <h1>Settings</h1>
+                </header>
+                <div class="settings-card">
+                    <div class="setting-item">
+                        <div>
+                            <h3>Reset Application</h3>
+                            <p>Clear all local data and start fresh.</p>
+                        </div>
+                        <button class="btn-danger" id="clear-data-btn">Reset Data</button>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <div class="modal-overlay" id="modal">
+        <div class="modal-content glass-effect">
+            <div class="modal-header">
+                <h2>New Candidate</h2>
+                <button class="close-btn" id="close-modal-btn"><i class="ph ph-x"></i></button>
+            </div>
+            <form id="add-candidate-form">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="c-name" placeholder="e.g. John Doe" required autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label>Role Applied For</label>
+                    <input type="text" id="c-role" placeholder="e.g. UX Designer" required autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label>Primary Skill</label>
+                    <select id="c-skill">
+                        <option value="React">React / JS</option>
+                        <option value="Design">UI / UX Design</option>
+                        <option value="Python">Python / Backend</option>
+                        <option value="Marketing">Marketing</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary full-width">
+                    <i class="ph ph-check"></i> Save Candidate
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
