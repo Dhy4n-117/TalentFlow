@@ -1,40 +1,47 @@
-# TalentFlow 🚀
+# TalentFlow v2.0 🚀
+**A Mobile-First, Responsive Hiring Platform**
 
-**A Modern, Browser-Based Hiring Platform**
-
-TalentFlow is a responsive Applicant Tracking System (ATS) featuring a Kanban-style workflow, real-time dashboard analytics, and persistent state management. Built entirely with Vanilla JavaScript to demonstrate core DOM manipulation and state logic without external frameworks.
+TalentFlow is a modern Applicant Tracking System (ATS) designed to mimic a native application experience. It features a dual-view pipeline (Kanban Board & List View), a mobile-first architecture with touch-friendly navigation, and persistent local state management.
 
 ![TalentFlow App Screenshot](./Screenshot.png)
 
 
 ## 🔗 Live Demo
-**[View Live Demo Here](https://dhy4n-117.github.io/TalentFlow/)**
+**[View Live Demo](#)** *(Replace with your Netlify/GitHub link)*
 
-## ✨ Key Features
+## ✨ Key Features (v2.0)
 
-### 🎨 UI/UX Design
-* **Glassmorphism Aesthetic:** Modern UI with frosted glass effects, semi-transparent cards, and a "Corporate Deep Blue" gradient theme.
-* **Responsive Layout:** Fully responsive CSS Grid/Flexbox architecture. The sidebar collapses automatically on mobile devices.
-* **Interactive Elements:** Smooth CSS transitions for hover states, modal pop-ups, and view switching.
+### 📱 Mobile-First Experience
+* **Responsive Navigation:** Automatically switches from a Sidebar (Desktop) to an App-style Bottom Navigation Bar (Mobile).
+* **Touch Interactions:** Includes "Ripple" click effects and touch-friendly buttons.
+* **Mobile Fallbacks:** Smartly handles Drag & Drop limitations on mobile by providing manual "Move" buttons for touch users.
 
-### ⚙️ Technical Functionality
-* **Full CRUD Operations:** Create new candidates, Read their status, Update via drag-and-drop, and Delete records.
-* **Drag & Drop Kanban:** Native HTML5 Drag and Drop API implementation for moving candidates between stages (Applied → Interview → Hired).
-* **State Persistence:** Uses `localStorage` to save data. The application state remains intact even after refreshing the browser.
-* **Dynamic Analytics:** The dashboard automatically calculates and updates metrics (Total Candidates, Hired Count, Pending).
+### 📊 Dual-View Pipeline
+* **Kanban Board:** Classic drag-and-drop interface for visual stage management.
+* **List View:** A dense, spreadsheet-style view for quick scanning and management of large candidate pools.
+* **Real-Time Toggle:** Instantly switch between views without losing context or filters.
 
-## 🛠️ Tech Stack
+### ⭐ Candidate Scoring
+* **Star Rating System:** Rate candidates from 1-5 stars during intake or review.
+* **Visual Indicators:** Ratings are visible in both Card and List modes for quick prioritization.
 
-* **Frontend:** HTML5, CSS3 (Variables, Grid, Flexbox, Animations)
-* **Logic:** Vanilla JavaScript (ES6+, DOM Manipulation, LocalStorage API)
-* **Icons:** Phosphor Icons (via CDN)
-* **No Frameworks:** Built from scratch to demonstrate foundational web development skills.
+### 🎨 Modern UI/UX
+* **Glassmorphism:** Frosted glass aesthetic (`backdrop-filter`) with a "Deep Abyss" gradient theme.
+* **Micro-Interactions:** Smooth CSS transitions for modals, view switching, and hover states.
+* **Toast Notifications:** Custom, non-intrusive popup alerts for user feedback (Success/Error states).
+
+## 🛠️ Technical Implementation
+
+* **Architecture:** Modular Vanilla JavaScript (ES6+) with clear separation of State, Render Logic, and Event Handling.
+* **State Management:** Centralized state object synced with `localStorage` for data persistence across sessions.
+* **CSS Variables:** Extensive use of CSS Custom Properties for consistent theming and easy maintenance.
+* **Zero Dependencies:** Built entirely without external frameworks (React/Vue) to demonstrate core DOM manipulation skills.
 
 ## 📂 Project Structure
 
 ```text
 /TalentFlow
-  ├── index.html        # Main application structure
-  ├── style.css         # Styling (Glassmorphism, Responsive logic, Dark Mode)
-  ├── app.js            # Application logic (State management, Drag & Drop)
+  ├── index.html        # Main DOM structure (includes Views, Modals, Navs)
+  ├── style.css         # All styles (Glassmorphism, Mobile Media Queries, Animations)
+  ├── app.js            # Core Logic (State, Drag&Drop, View Switching)
   └── README.md         # Documentation
