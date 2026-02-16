@@ -17,7 +17,6 @@
 
     <div class="app-container">
         <aside class="sidebar" id="sidebar">
-            
             <button class="toggle-btn" id="sidebar-toggle">
                 <i class="ph-bold ph-caret-left"></i>
             </button>
@@ -32,12 +31,10 @@
                     <i class="ph ph-squares-four"></i>
                     <span>Dashboard</span>
                 </button>
-                
-                <button class="nav-btn" data-target="board">
+                <button class="nav-btn" data-target="pipeline">
                     <i class="ph ph-kanban"></i>
-                    <span>Kanban Board</span>
+                    <span>Pipeline</span>
                 </button>
-                
                 <button class="nav-btn" data-target="settings">
                     <i class="ph ph-gear"></i>
                     <span>Settings</span>
@@ -47,7 +44,7 @@
             <div class="user-profile">
                 <img src="https://i.pravatar.cc/150?img=33" alt="User Avatar">
                 <div class="user-info">
-                    <p class="name">John</p>
+                    <p class="name">Alex Designer</p>
                     <p class="role">Recruiter</p>
                 </div>
             </div>
@@ -58,8 +55,8 @@
             <section id="dashboard" class="view active-view">
                 <header class="view-header">
                     <div>
-                        <h1>Welcome back, John! 👋</h1>
-                        <p class="subtitle">Here's your hiring pipeline at a glance.</p>
+                        <h1>Dashboard</h1>
+                        <p class="subtitle">Overview of your hiring metrics.</p>
                     </div>
                 </header>
                 
@@ -67,7 +64,7 @@
                     <div class="stat-card">
                         <div class="icon-box purple"><i class="ph ph-users"></i></div>
                         <div>
-                            <h3>Total Candidates</h3>
+                            <h3>Total</h3>
                             <p class="stat-num" id="total-count">0</p>
                         </div>
                     </div>
@@ -88,18 +85,35 @@
                 </div>
             </section>
 
-            <section id="board" class="view">
-                <header class="view-header">
-                    <div>
-                        <h1>Manage Pipeline</h1>
-                        <p class="subtitle">Drag and drop candidates to update status.</p>
+            <section id="pipeline" class="view">
+                <header class="view-header board-header">
+                    <div class="header-left">
+                        <h1>Pipeline</h1>
+                        <p class="subtitle">Manage candidates via Board or List.</p>
                     </div>
-                    <button class="btn-primary" id="open-modal-btn">
-                        <i class="ph ph-plus"></i> <span>Add Candidate</span>
-                    </button>
+                    
+                    <div class="header-actions">
+                        <div class="view-toggles">
+                            <button class="icon-btn active" id="view-board-btn" title="Board View">
+                                <i class="ph ph-kanban"></i>
+                            </button>
+                            <button class="icon-btn" id="view-list-btn" title="List View">
+                                <i class="ph ph-list-dashes"></i>
+                            </button>
+                        </div>
+
+                        <div class="search-box">
+                            <i class="ph ph-magnifying-glass"></i>
+                            <input type="text" id="search-input" placeholder="Search...">
+                        </div>
+                
+                        <button class="btn-primary ripple" id="open-modal-btn">
+                            <i class="ph ph-plus"></i> <span>Add</span>
+                        </button>
+                    </div>
                 </header>
 
-                <div class="kanban-grid">
+                <div id="kanban-view" class="kanban-grid">
                     <div class="kanban-column">
                         <div class="column-header">
                             <div class="header-title">
@@ -133,6 +147,18 @@
                         <div class="card-list" id="col-hired"></div>
                     </div>
                 </div>
+
+                <div id="list-view" class="list-container hidden">
+                    <div class="list-header-row">
+                        <span>Candidate</span>
+                        <span>Role</span>
+                        <span>Status</span>
+                        <span>Rating</span>
+                        <span>Actions</span>
+                    </div>
+                    <div id="list-rows-container">
+                        </div>
+                </div>
             </section>
 
             <section id="settings" class="view">
@@ -142,16 +168,31 @@
                 <div class="settings-card">
                     <div class="setting-item">
                         <div>
-                            <h3>Reset Application</h3>
-                            <p>Clear all local data and start fresh.</p>
+                            <h3>Reset Data</h3>
+                            <p>Clear all candidates and start fresh.</p>
                         </div>
-                        <button class="btn-danger" id="clear-data-btn">Reset Data</button>
+                        <button class="btn-danger ripple" id="clear-data-btn">Reset</button>
                     </div>
                 </div>
             </section>
 
         </main>
     </div>
+
+    <nav class="mobile-bottom-nav">
+        <button class="nav-btn active" data-target="dashboard">
+            <i class="ph ph-squares-four"></i>
+            <span>Dash</span>
+        </button>
+        <button class="nav-btn" data-target="pipeline">
+            <i class="ph ph-kanban"></i>
+            <span>Pipeline</span>
+        </button>
+        <button class="nav-btn" data-target="settings">
+            <i class="ph ph-gear"></i>
+            <span>Settings</span>
+        </button>
+    </nav>
 
     <div class="modal-overlay" id="modal">
         <div class="modal-content glass-effect">
@@ -165,8 +206,8 @@
                     <input type="text" id="c-name" placeholder="e.g. John Doe" required autocomplete="off">
                 </div>
                 <div class="form-group">
-                    <label>Role Applied For</label>
-                    <input type="text" id="c-role" placeholder="e.g. UX Designer" required autocomplete="off">
+                    <label>Role</label>
+                    <input type="text" id="c-role" placeholder="e.g. Designer" required autocomplete="off">
                 </div>
                 <div class="form-group">
                     <label>Primary Skill</label>
@@ -177,14 +218,25 @@
                         <option value="Marketing">Marketing</option>
                     </select>
                 </div>
-                <button type="submit" class="btn-primary full-width">
-                    <i class="ph ph-check"></i> Save Candidate
+                <div class="form-group">
+                    <label>Initial Rating</label>
+                    <select id="c-rating">
+                        <option value="1">1 Star</option>
+                        <option value="2">2 Stars</option>
+                        <option value="3" selected>3 Stars</option>
+                        <option value="4">4 Stars</option>
+                        <option value="5">5 Stars</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary full-width ripple">
+                    Save Candidate
                 </button>
             </form>
         </div>
     </div>
 
+    <div id="toast-container" class="toast-container"></div>
+
     <script src="app.js"></script>
 </body>
-
 </html>
