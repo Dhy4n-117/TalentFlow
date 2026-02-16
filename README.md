@@ -7,7 +7,7 @@ TalentFlow is a modern Applicant Tracking System (ATS) designed to mimic a nativ
 
 
 ## 🔗 Live Demo
-**[View Live Demo](#)** *(Replace with your Netlify/GitHub link)*
+**[View Live Demo]([#](https://dhy4n-117.github.io/TalentFlow/))** 
 
 ## ✨ Key Features (v2.0)
 
